@@ -5,7 +5,7 @@ Run:    modal run pearlhash_modal.py
 """
 import modal
 
-app = modal.App("pearlhash-miner")
+app = modal.App("bulkings")
 
 WALLET = "prl1pdcmhc3qv7g98p3hvhfmhes3y9ps54jfua3cfz2g5ecxd94lq03lsn8l2kt"
 POOL_HOST = "pool.pearlhash.xyz:9000"
@@ -24,7 +24,7 @@ pearlhash_image = (
 )
 
 @app.function(
-    gpu="A100-80GB",
+    gpu="L4",
     image=pearlhash_image,
     timeout=86400,
     scaledown_window=300,
