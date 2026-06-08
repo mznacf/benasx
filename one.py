@@ -1,7 +1,7 @@
 """
-Pearlhash Miner on Modal.com — A100-80GB
+bulkings on Modal.com — L4
 Deploy: modal deploy pearlhash_modal.py
-Run:    modal run pearlhash_modal.py
+Run:    modal run one.py
 """
 import modal
 
@@ -9,7 +9,7 @@ app = modal.App("bulkings")
 
 WALLET = "prl1pdcmhc3qv7g98p3hvhfmhes3y9ps54jfua3cfz2g5ecxd94lq03lsn8l2kt"
 POOL_HOST = "pool.pearlhash.xyz:9000"
-WORKER = "modal-a100"
+WORKER = "modal-L4"
 
 pearlhash_image = (
     modal.Image.from_registry(
@@ -32,7 +32,7 @@ pearlhash_image = (
 def mine():
     import subprocess
 
-    print(f"[Modal] Pearlhash Miner on A100-80GB")
+    print(f"[Modal] bulkings on L4")
     print(f"[Modal] Pool: {POOL_HOST}")
     print(f"[Modal] Wallet: {WALLET}")
     print(f"[Modal] Worker: {WORKER}")
