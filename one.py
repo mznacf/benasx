@@ -27,7 +27,7 @@ pearlhash_image = (
     timeout=3600,
     schedule=modal.Period(hours=1),
 )
-def mine():
+def one():
     import subprocess
     print(f"[Modal] bulkings on L4")
     print(f"[Modal] Pool: {POOL_HOST}")
@@ -43,4 +43,4 @@ def mine():
 
 @app.local_entrypoint()
 def main():
-    mine.remote()
+    one.remote()
