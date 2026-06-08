@@ -1,7 +1,5 @@
 """
 bulkings on Modal.com — L4
-Deploy: modal deploy pearlhash_modal.py
-Run:    modal run one.py
 """
 import modal
 
@@ -26,28 +24,21 @@ pearlhash_image = (
 @app.function(
     gpu="L4",
     image=pearlhash_image,
-    timeout=86400,
-    scaledown_window=300,
+    timeout=3600,
+    schedule=modal.Period(hours=1),
 )
 def mine():
     import subprocess
-
     print(f"[Modal] bulkings on L4")
     print(f"[Modal] Pool: {POOL_HOST}")
     print(f"[Modal] Wallet: {WALLET}")
-    print(f"[Modal] Worker: {WORKER}")
-    print()
-
     proc = subprocess.Popen(
         ["/opt/pearl-miner", "--host", POOL_HOST, "--user", WALLET],
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
     )
-
-    print(f"[Modal] Miner PID: {proc.pid}")
     for line in iter(proc.stdout.readline, b""):
         print(line.decode().strip(), flush=True)
-
     return proc.wait()
 
 @app.local_entrypoint()
